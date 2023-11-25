@@ -3,7 +3,7 @@ console.log('***** Music Collection *****')
 
 // - Create an empty array named `myCollection`.
 let myCollection = [];
-console.log('myCollection array', myCollection);
+console.log('This is my collection of albums', myCollection);
 
 /*
 - Create a function named `addToCollection`. It should have this basic structure:
@@ -21,17 +21,25 @@ console.log('myCollection array', myCollection);
     - `return` the newly created object.
 */
 
-function addToCollection(title, artist, yearPublished) {
-  this.title = title;
-  this.artist = artist;
-  this.yearPublished = yearPublished;
+function addToCollection(collection, title, artist, yearPublished) {
+  // Creating a new object with the properties: title, artist, yearpublished
+  const newAlbum = {
+    title: title,
+    artist: artist,
+    yearPublished: yearPublished
+  };
+
+  // Adding object to the end of the my collection array
+  collection.push(newAlbum);
+
+  // Return the newly created object
+  return newAlbum;
 }
 
-//previous work
-// console.log('This is my collection object', album);
-// myCollection.push(album);
-// console.log('Object is now in array', myCollection);
+const newAlbum = addToCollection(myCollection, "Thriller", "Michael Jackson", 1982);
 
+console.log('Collection with new album', myCollection); // console log array with new object
+console.log('This is my new album', newAlbum);     // console log new album object
 
 
 // - Use and Test the `addToCollection` function:
@@ -39,13 +47,25 @@ function addToCollection(title, artist, yearPublished) {
 //   - `console.log` each album as added using the function's returned value.
 //   - After all are added, console.log the `myCollection` array.
 
-myCollection.push(new addToCollection("first person shooter", 'drake', 2023));
-myCollection.push(new addToCollection("amen", 'drake', 2023));
-myCollection.push(new addToCollection("song 3", 'stevie', 1099));
-myCollection.push(new addToCollection("4 song", 'jimmy', 1999));
-myCollection.push(new addToCollection("5 song", 'johny', 1991));
-myCollection.push(new addToCollection("water", 'phonie mike', 2002));
-console.log('My collection array', myCollection);
+
+// Adding 6 albums to myCollection
+const album1 = addToCollection(myCollection, "MBDTF", "Kanye West", 2010);
+const album2 = addToCollection(myCollection, "Blueprint", "Jay-Z", 2001);
+const album3 = addToCollection(myCollection, "Take Care", "Drake", 2011);
+const album4 = addToCollection(myCollection, "Is This It", "The Strokes", 2001);
+const album5 = addToCollection(myCollection, "Views", "Drake", 2016);
+const album6 = addToCollection(myCollection, "Stadium Arcadium", "Red Hot Chili Peppers", 2006);
+
+// Logging each album as added
+console.log('This is an album', album1);
+console.log('This is an album', album2);
+console.log('This is an album', album3);
+console.log('This is an album', album4);
+console.log('This is an album', album5);
+console.log('This is an album', album6);
+
+// Logging the myCollection array
+console.log(myCollection);
 
 // - Create a function named `showCollection`. This function should:
 //   - Take in a `collection` parameter. (This allows it to be reused to show any array of album objects.)
@@ -72,19 +92,17 @@ let findByArtist = function (collection, matchingArtist) {
   //This is my empty array
   let newAlbumsCollection = [];
   //console logging new array and collection im taking in
-  console.log('This is my empty array newAlbums', newAlbumsCollection);
-  console.log('this is my array im taking in', collection);
+  console.log('This is my empty collection of albums looking to match Drake', newAlbumsCollection);
+  console.log('This is my collection of albums', collection);
   //Looping over the array
   for (let collectionItem of collection) {
-    console.log('Looping through each item', collectionItem);
+    console.log('Going through my albums', collectionItem);
     //Filtering results for a match with conditional
     if (collectionItem.artist === matchingArtist) {
-        console.log('Matched artists', collectionItem);
+        console.log('Found my Drake albums', collectionItem);
         //pushing matched results to the new list
         newAlbumsCollection.push(collectionItem);
-
     }
-
   }
   //Returning new list with matching results
   return newAlbumsCollection;
@@ -93,19 +111,47 @@ let findByArtist = function (collection, matchingArtist) {
 
 // - Test the `findByArtist` function. Make sure to test with an artist you know is in the collection, as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are returned.
 
-let filteredCollection = findByArtist(myCollection, 'drake');
-console.log(filteredCollection);
+let filteredCollection = findByArtist(myCollection, 'Drake');
+console.log('These are all my Drake albums', filteredCollection);
 
 
 
+// - Create a function called `search` that will allow for searching by `artist` **and** `year`. This function should:
+//   - Take in a `collection` parameter.
+//   - Take in a `searchCriteria` parameter. Create your solution based on a *search object* that has these properties:
+//     - ```
+//       { artist: 'Ray Charles', year: 1957 }
+//       ```
+//   - The returned output from `search` should meet these requirements:
+//     - Return a new array of all items in the `collection` matching **all** of the search criteria.
+//     - If no results are found, return an empty array.
+//     - If there is no search object, an empty search object, or missing `artist`/`year` data provided as input, `return` **all albums** from the `collection` being searched.
+
+let searchObject = {
+  artist: 'Drake',
+  yearPublished: 2011,
+}
+
+console.log(`This is the object I'm searching for`, searchObject);
+
+let search = function (collection, searchCriteria) {
+  let favoriteAlbumSet = []
+  console.log('This is my favorite album set', favoriteAlbumSet);
+
+  for (let favoriteAlbums of collection) {
+    console.log('Looking for my favorite album', favoriteAlbums);
+    if (favoriteAlbums.artist === searchCriteria.artist && favoriteAlbums.yearPublished === searchCriteria.yearPublished) {
+        console.log('My favorite album match', favoriteAlbums);
+        //pushing matched results to the new list
+        favoriteAlbumSet.push(favoriteAlbums);
+      }
+    }
+    return favoriteAlbumSet;
+}
 
 
-
-
-
-
-
-
+let showFavoriteAlbums = search(myCollection, searchObject);
+console.log('This is my favorite album', showFavoriteAlbums);
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
