@@ -57,10 +57,9 @@ for (let albums of collection) {
 }
 }
 
+// - Test the `showCollection` function.
 let displayCollection = showCollection(myCollection);
 console.log(displayCollection);
-
-// - Test the `showCollection` function.
 
 // - Add a function named `findByArtist`. This function should:
 //   - Take in a `collection` parameter. Remember, we want to be able to search any collection!
@@ -69,9 +68,33 @@ console.log(displayCollection);
 //   - Loop through the `collection` and add any album objects with a matching artist to the array.
 //   - Return the array with the matching results. (If no results are found, an empty array should be returned.)
 
+let findByArtist = function (collection, matchingArtist) {
+  //This is my empty array
+  let newAlbumsCollection = [];
+  //console logging new array and collection im taking in
+  console.log('This is my empty array newAlbums', newAlbumsCollection);
+  console.log('this is my array im taking in', collection);
+  //Looping over the array
+  for (let collectionItem of collection) {
+    console.log('Looping through each item', collectionItem);
+    //Filtering results for a match with conditional
+    if (collectionItem.artist === matchingArtist) {
+        console.log('Matched artists', collectionItem);
+        //pushing matched results to the new list
+        newAlbumsCollection.push(collectionItem);
+
+    }
+
+  }
+  //Returning new list with matching results
+  return newAlbumsCollection;
+}
+
+
 // - Test the `findByArtist` function. Make sure to test with an artist you know is in the collection, as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are returned.
 
-// > When testing your functions, write all tests in the JavaScript file!
+let filteredCollection = findByArtist(myCollection, 'drake');
+console.log(filteredCollection);
 
 
 
