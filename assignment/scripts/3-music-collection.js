@@ -40,13 +40,25 @@ function addToCollection(title, artist, yearPublished) {
 //   - After all are added, console.log the `myCollection` array.
 
 myCollection.push(new addToCollection("first person shooter", 'drake', 2023));
-console.log('My collection array', myCollection);
 myCollection.push(new addToCollection("amen", 'drake', 2023));
+myCollection.push(new addToCollection("song 3", 'stevie', 1099));
+myCollection.push(new addToCollection("4 song", 'jimmy', 1999));
+myCollection.push(new addToCollection("5 song", 'johny', 1991));
+myCollection.push(new addToCollection("water", 'phonie mike', 2002));
 console.log('My collection array', myCollection);
 
 // - Create a function named `showCollection`. This function should:
 //   - Take in a `collection` parameter. (This allows it to be reused to show any array of album objects.)
 //   - Loop through the `collection` and `console.log` each album's information formatted **within a single string**, like: `TITLE by ARTIST, published in YEAR`.
+function showCollection(collection) {
+for (let albums of collection) {
+  // console.log(albums);
+  console.log(`${albums.title} by ${albums.artist} published in ${albums.yearPublished}`)
+}
+}
+
+let displayCollection = showCollection(myCollection);
+console.log(displayCollection);
 
 // - Test the `showCollection` function.
 
